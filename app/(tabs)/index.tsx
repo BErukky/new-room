@@ -221,7 +221,6 @@ export default function HomeScreen() {
     router.replace('/login');
   };
 
-  const displayAvatar = userProfile?.avatar_url || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80';
 
   return (
     <SafeAreaView style={{ flex: 1 }} className="bg-slate-50 dark:bg-slate-900" edges={['top']}>
@@ -234,10 +233,14 @@ export default function HomeScreen() {
           activeOpacity={0.7}
         >
           <View className="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-800 overflow-hidden border border-slate-300 dark:border-slate-700 items-center justify-center">
-            <Image 
-              source={{ uri: displayAvatar }} 
-              style={{ width: '100%', height: '100%' }}
-            />
+            {userProfile?.avatar_url ? (
+              <Image 
+                source={{ uri: userProfile.avatar_url }} 
+                style={{ width: '100%', height: '100%' }}
+              />
+            ) : (
+              <Ionicons name="person" size={20} color="#64748b" />
+            )}
           </View>
           <View className="ml-3">
             <Text className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">{greeting}</Text>

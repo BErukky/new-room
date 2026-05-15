@@ -82,7 +82,6 @@ export default function SettingsScreen() {
     }
   ];
 
-  const displayAvatar = userProfile?.avatar_url || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80';
 
   return (
     <SafeAreaView style={{ flex: 1 }} className="bg-slate-50 dark:bg-slate-900" edges={['top']}>
@@ -102,10 +101,16 @@ export default function SettingsScreen() {
             activeOpacity={0.7}
           >
             <View className="relative">
-              <Image 
-                source={{ uri: displayAvatar }} 
-                style={{ width: 70, height: 70, borderRadius: 35 }}
-              />
+              {userProfile?.avatar_url ? (
+                <Image 
+                  source={{ uri: userProfile.avatar_url }} 
+                  style={{ width: 70, height: 70, borderRadius: 35 }}
+                />
+              ) : (
+                <View className="w-[70px] h-[70px] rounded-full bg-slate-100 dark:bg-slate-700 items-center justify-center">
+                  <Ionicons name="person" size={32} color="#64748b" />
+                </View>
+              )}
             </View>
             
             <View className="ml-4 flex-1">

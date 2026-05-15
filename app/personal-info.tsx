@@ -166,7 +166,6 @@ export default function PersonalInfoScreen() {
     );
   }
 
-  const displayAvatar = avatarUrl || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80';
 
   return (
     <SafeAreaView style={{ flex: 1 }} className="bg-white dark:bg-slate-900">
@@ -204,10 +203,16 @@ export default function PersonalInfoScreen() {
           <View className="items-center mb-10">
             <View className="relative">
               <View className="w-32 h-32 rounded-full border-4 border-blue-50 dark:border-blue-900/30 overflow-hidden shadow-xl">
-                <Image 
-                  source={{ uri: displayAvatar }} 
-                  style={{ width: '100%', height: '100%' }} 
-                />
+                {avatarUrl ? (
+                  <Image 
+                    source={{ uri: avatarUrl }} 
+                    style={{ width: '100%', height: '100%' }} 
+                  />
+                ) : (
+                  <View className="flex-1 items-center justify-center bg-slate-100 dark:bg-slate-800">
+                    <Ionicons name="person" size={64} color="#64748b" />
+                  </View>
+                )}
               </View>
               {isEditing && (
                 <TouchableOpacity 

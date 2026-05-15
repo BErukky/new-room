@@ -233,10 +233,9 @@ export default function ArticleScreen() {
 
           <View className="flex-row items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-4 mb-6">
             <View className="flex-row items-center">
-              <Image 
-                source={{ uri: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80' }} 
-                style={{ width: 40, height: 40, borderRadius: 20 }}
-              />
+              <View className="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 items-center justify-center border border-slate-200 dark:border-slate-700">
+                <Ionicons name="person" size={20} color="#64748b" />
+              </View>
               <View className="ml-3">
                 <Text className="font-bold text-slate-900 dark:text-white">{article.author}</Text>
                 <Text className="text-xs text-slate-500 dark:text-slate-400">{article.time}</Text>
