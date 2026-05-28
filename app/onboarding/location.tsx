@@ -13,15 +13,63 @@ const POPULAR_COUNTRIES = [
 ];
 
 const COUNTRY_CODES: Record<string, string> = {
-  'United States': 'us',
-  'United Kingdom': 'gb',
-  'Nigeria': 'ng',
-  'India': 'in',
-  'Canada': 'ca',
+  'Argentina': 'ar',
   'Australia': 'au',
+  'Austria': 'at',
+  'Belgium': 'be',
+  'Brazil': 'br',
+  'Bulgaria': 'bg',
+  'Canada': 'ca',
+  'China': 'cn',
+  'Colombia': 'co',
+  'Cuba': 'cu',
+  'Czech Republic': 'cz',
+  'Egypt': 'eg',
+  'France': 'fr',
+  'Germany': 'de',
+  'Greece': 'gr',
+  'Hong Kong': 'hk',
+  'Hungary': 'hu',
+  'India': 'in',
+  'Indonesia': 'id',
+  'Ireland': 'ie',
+  'Israel': 'il',
+  'Italy': 'it',
+  'Japan': 'jp',
+  'Latvia': 'lv',
+  'Lithuania': 'lt',
+  'Malaysia': 'my',
+  'Mexico': 'mx',
+  'Morocco': 'ma',
+  'Netherlands': 'nl',
+  'New Zealand': 'nz',
+  'Nigeria': 'ng',
+  'Norway': 'no',
+  'Philippines': 'ph',
+  'Poland': 'pl',
+  'Portugal': 'pt',
+  'Romania': 'ro',
+  'Russia': 'ru',
+  'Saudi Arabia': 'sa',
+  'Serbia': 'rs',
+  'Singapore': 'sg',
+  'Slovakia': 'sk',
+  'Slovenia': 'si',
   'South Africa': 'za',
-  'Germany': 'de'
+  'South Korea': 'kr',
+  'Sweden': 'se',
+  'Switzerland': 'ch',
+  'Taiwan': 'tw',
+  'Thailand': 'th',
+  'Turkey': 'tr',
+  'UAE': 'ae',
+  'Ukraine': 'ua',
+  'United Kingdom': 'gb',
+  'United States': 'us',
+  'Venezuela': 've',
 };
+
+const ALL_COUNTRIES = Object.keys(COUNTRY_CODES).sort();
 
 export default function LocationScreen() {
   const [selectedCountry, setSelectedCountry] = useState<string>('');
@@ -65,7 +113,8 @@ export default function LocationScreen() {
     }
   };
 
-  const filteredCountries = POPULAR_COUNTRIES.filter(c => c.toLowerCase().includes(search.toLowerCase()));
+  const countriesToFilter = search.trim().length > 0 ? ALL_COUNTRIES : POPULAR_COUNTRIES;
+  const filteredCountries = countriesToFilter.filter(c => c.toLowerCase().includes(search.toLowerCase()));
 
   return (
     <SafeAreaView style={{ flex: 1 }} className="bg-white dark:bg-slate-900">
@@ -100,14 +149,14 @@ export default function LocationScreen() {
         </View>
 
         {/* List */}
-        <View className="space-y-3">
+        <View className="pb-4">
           {filteredCountries.map((country) => {
             const isSelected = selectedCountry === country;
             return (
               <TouchableOpacity
                 key={country}
                 onPress={() => setSelectedCountry(country)}
-                className={`flex-row items-center justify-between p-4 rounded-2xl border ${
+                className={`flex-row items-center justify-between p-4 mb-4 rounded-2xl border ${
                   isSelected 
                     ? 'bg-blue-50 dark:bg-blue-900/30 border-blue-600' 
                     : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-700'
